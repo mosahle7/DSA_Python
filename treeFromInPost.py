@@ -5,7 +5,6 @@ class Node:
 
 #Function to return a tree created from postorder and inoreder traversals.
 
-
 class Solution:
     def buildTree(self, In, post, n):
         # Base case: If the number of nodes is 0, return None
