@@ -1,5 +1,5 @@
 class Solution:
-    def perfectSum(self, arr, n, sum):
+    def recSubSum(self, arr, n, sum):
         mod = 10**9 + 7
         memo = {}
 
@@ -21,3 +21,34 @@ class Solution:
             return memo[(pos, current_sum)]
 
         return fun(0, sum)
+
+class Solution:
+    def recMemSubSum(self, arr, n, sum):
+        mod = 10**9 + 7
+        dp=[[-1]*(sum+1) for i in range(n+1)]
+
+        def fun(pos,sum):
+
+            if sum<0: return 0
+            if pos==n: return 1 if sum==0 else 0
+
+            if dp[pos][sum]!=-1: return dp[pos][sum]
+
+            dp[pos][sum] = (fun(pos+1,sum)%mod + fun(pos+1,sum-arr[pos])%mod)%mod
+
+            return dp[pos][sum]
+        
+        return fun(0,sum)
+
+
+class Solution:
+    def dpSubSum(self, arr, n, sum):
+        dp=[[0]*(sum+1) for i in range(n+1)]
+        dp[0][0]=1
+
+        for i in range(1,n+1):
+            for j in range(sum+1):
+                if j<arr[i-1]: dp[i][j]=dp[i-1][j]
+                else: dp[i][j] = dp[i-1][j]+dp[i-1][j-arr[i-1]]
+        
+        return dp[n][sum]
