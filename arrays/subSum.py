@@ -52,3 +52,16 @@ class Solution:
                 else: dp[i][j] = dp[i-1][j]+dp[i-1][j-arr[i-1]]
         
         return dp[n][sum]
+
+class Solution:
+    def dp1DSubSum(self, arr, n, sum):
+        mod = 10**9 + 7
+
+        dp = [0] * (sum + 1)
+        dp[0] = 1
+
+        for i in range(n):
+            for j in range(sum, arr[i] - 1, -1):
+                dp[j] = (dp[j] + dp[j - arr[i]]) % mod
+
+        return dp[sum]%mod
