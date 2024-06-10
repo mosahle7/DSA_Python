@@ -7,3 +7,4 @@ class Solution:
             else: num=num*2
             op+=1
         return op
+ 
