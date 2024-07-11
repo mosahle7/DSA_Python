@@ -1,7 +1,7 @@
 
 from typing import List
 
-class Solution:
+class Solution: 
     def shortestPath(self, V : int, m : int, edges : List[List[int]]) -> List[int]:
         dis=[float('inf')]*(V)
         dis[0]=0
