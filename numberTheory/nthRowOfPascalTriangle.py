@@ -21,3 +21,18 @@ class Solution:
     
         if n%2==0: return a2
 		else: return a1
+
+class Solution:
+
+	def nthRowOfPascalTriangle(self,n):
+	    m=10**9+7
+	    if n==1: return [1]
+	   
+	    row=[1]
+	    cur=1
+	    for k in range(1,n-1):
+	        cur=(cur*(n-k))//k
+	        a=cur%m
+	        row.append(a)
+	    row.append(1)
+	    return row
