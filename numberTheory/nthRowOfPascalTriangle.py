@@ -1,4 +1,4 @@
-class Solution:
+class Solution: 
 	def nthRowOfPascalTriangle(self,n):
 		mod=10**9+7
 		a1=[1]
