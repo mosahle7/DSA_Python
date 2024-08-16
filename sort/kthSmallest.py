@@ -18,3 +18,20 @@ class Solution:
             
         return quickSel(arr,l,r,k-1)
             
+
+class Solution:
+
+    def kthSmallest(self, arr,k):
+        n=len(arr)
+        ma=max(arr)
+        ch=[0]*(ma+1)
+        
+        for i in range(n):
+            ch[arr[i]]=1
+        
+        for i in range(ma+1):
+            if ch[i]==1:
+                k-=1
+            if k==0: 
+                return i
+            
