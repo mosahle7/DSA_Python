@@ -1,4 +1,19 @@
 class Solution:
+	def mergeOverlap(self, arr):
+		arr.sort()
+		n=len(arr)
+		idx=0
+		for i in range(1,n):
+		    if arr[i][0]<=arr[idx][1]:
+		            arr[idx][1]=max(arr[idx][1],arr[i][1])
+		    else:
+		        idx+=1
+		        arr[idx]=arr[i]
+		return arr[:idx+1]
+
+
+
+class Solution:
 	def overlappedInterval(self, inters):
 	    inters.sort()
 	    n=len(inters)
