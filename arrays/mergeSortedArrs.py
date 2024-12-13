@@ -1,36 +1,38 @@
 import math
-
 class Solution:
-    
-    def merge(self, n, m, arr1, arr2):
-        c = math.ceil((m + n) / 2)  # Initial gap size
-        le = m + n  # Total length of combined arrays
+    def mergeArrays(self, arr1, arr2):
+        n=len(arr1)
+        m=len(arr2)
         
-        while c > 0:
-            l, r = 0, c  # Set left and right pointers
-            
-            # Compare elements with the current gap size
-            while r < le:
-                # Case 1: Both pointers in arr1
-                if l < n and r < n:
-                    if arr1[l] > arr1[r]:
-                        arr1[l], arr1[r] = arr1[r], arr1[l]
-                # Case 2: l in arr1, r in arr2
-                elif l < n and r >= n:
-                    if arr1[l] > arr2[r - n]:
-                        arr1[l], arr2[r - n] = arr2[r - n], arr1[l]
-                # Case 3: Both pointers in arr2
-                elif l >= n and r >= n:
-                    if arr2[l - n] > arr2[r - n]:
-                        arr2[l - n], arr2[r - n] = arr2[r - n], arr2[l - n]
+        def next_gap(gap):
+            if gap<=1: 
+                return 0
+            return math.ceil(gap/2)
+        
+        gap=next_gap(m+n)
+        
+        while gap>0:
+            i=0
+            while gap+i<n:
+                if arr1[i]>arr1[i+gap]:
+                    arr1[i],arr1[i+gap]=arr1[i+gap],arr1[i]
+                i+=1
                 
-                l += 1
-                r += 1
+            j=max(0,gap-n)
             
-            # Update the gap size
-            if c == 1:  # If the gap becomes 1, exit the loop after this pass
-                break
-            c = math.ceil(c / 2)
+            while i<n and j<m:
+                if arr1[i]>arr2[j]:
+                    arr1[i],arr2[j]=arr2[j],arr1[i]
+                i+=1
+                j+=1
+            
+            j=0
+            while gap+j<m:
+                if arr2[j]>arr2[j+gap]:
+                    arr2[j],arr2[j+gap]=arr2[j+gap],arr2[j]
+                j+=1
+                
+            gap=next_gap(gap)
 
 class Solution:
     
